@@ -1,1 +1,3 @@
 # SuperCopaArturo
+
+Me falto la utilizacion de tablas en las GUIS, pero tenia que asignar la columna 1 a DatosJugadores.LeerArchivoTextoDevuelveNumero("src\main\resources\imagenes\(pais correspondiente).txt"), luego tenia que asignar la columna 2 a DatosJugadores.LeerArchivoTextoDevuelveNombre("src\main\resources\imagenes\(pais correspondiente).txt") y tenia que asignar la columna 3 a DatosJugadores.LeerArchivoTextoDevuelvePosicion("src\main\resources\imagenes\(pais correspondiente).txt"), eso mostraria la tabla con los datos correspondientes pero no logre aprender la utilizacion de JTable para implementarlo
