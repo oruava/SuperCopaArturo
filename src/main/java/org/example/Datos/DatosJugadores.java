@@ -14,80 +14,67 @@ import javax.swing.*;
 public interface DatosJugadores {
 
 
+    static String LeerArchivoTextoDevuelveNumero(String rutaArchivo) {
 
-    static void escribirCSV(String nombreArchivo, String[] datos) {
-        try (FileWriter writer = new FileWriter(nombreArchivo, true)) {
-            for (String dato : datos) {
-                writer.append(dato).append(",");
-            }
-            writer.append("\n");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    static String buscarPaisYDarRanking(String pais) {
-        String ranking = "";
-        try (BufferedReader br = new BufferedReader(new FileReader(pais+".csv"))) {
+        try (FileReader fileReader = new FileReader(rutaArchivo);
+             BufferedReader bufferedReader = new BufferedReader(fileReader)) {
+
             String linea;
-            while ((linea = br.readLine()) != null) {
-                String[] datos = linea.split(",");
-                if (datos[0].equals(pais)) {
-                    ranking =(datos[1]);
-                    return ranking;
+
+            while ((linea = bufferedReader.readLine()) != null) {
+                String[] columnas = linea.split("\t");
+
+                if (columnas.length > 0) {
+                    return (columnas[0]);
                 }
             }
-            System.out.println("Pais no encontrado: " + pais);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return ranking;
+        return "";
     }
+    static String LeerArchivoTextoDevuelveNombre(String rutaArchivo) {
 
-    static boolean buscarUsuarioOAdmin(String usuarioBuscado, String claveBuscado) {
-        boolean permisos = true;
-        try (BufferedReader br = new BufferedReader(new FileReader("datos.csv"))) {
+        try (FileReader fileReader = new FileReader(rutaArchivo);
+             BufferedReader bufferedReader = new BufferedReader(fileReader)) {
+
             String linea;
-            while ((linea = br.readLine()) != null) {
-                String[] datos = linea.split(",");
-                if (usuarioBuscado.equals("admin")&& claveBuscado.equals("1234")) {
 
-                    System.out.println("Usuario encontrado:");
-                    System.out.println("Usuario: " + datos[0]);
-                    System.out.println("Clave: " + datos[1]);
-                    permisos = true;
-                    return permisos;
-                }
-                else if (datos[0].equals(usuarioBuscado) && datos[1].equals(claveBuscado)){
-                    permisos = false;
-                    return permisos;
+            while ((linea = bufferedReader.readLine()) != null) {
+                String[] columnas = linea.split("\t");
+
+                if (columnas.length > 1) {
+                    return (columnas[1]);
                 }
             }
-            System.out.println("Usuario no encontrado con Usuario: " + usuarioBuscado);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return permisos;
+        return "";
     }
+    static String LeerArchivoTextoDevuelvePosicion(String rutaArchivo) {
 
+        try (FileReader fileReader = new FileReader(rutaArchivo);
+             BufferedReader bufferedReader = new BufferedReader(fileReader)) {
 
-    static void cambiarEstadoPrestadoPorID(String idBuscado, String nuevoEstado) {
-        try (BufferedReader br = new BufferedReader(new FileReader("datos.csv"))) {
             String linea;
-            StringBuilder nuevoContenido = new StringBuilder();
-            while ((linea = br.readLine()) != null) {
-                String[] datos = linea.split(",");
-                if (datos.length > 0 && datos[0].equals(idBuscado)) {
-                    datos[1] = nuevoEstado;
-                    System.out.println("El estado prestado de la ID ingresada ha sido cambiado");
+
+            while ((linea = bufferedReader.readLine()) != null) {
+                String[] columnas = linea.split("\t");
+
+                if (columnas.length > 2) {
+                    return (columnas[2]);
                 }
-                nuevoContenido.append(String.join(",", datos)).append("\n");
             }
-            try (FileWriter writer = new FileWriter("datos.csv")) {
-                writer.write(nuevoContenido.toString());
-            }
+
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return "";
     }
-
 }
+
+
+

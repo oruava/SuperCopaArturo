@@ -7,6 +7,11 @@ import java.awt.event.ActionListener;
 
 import org.example.Datos.DatosJugadores;
 import org.example.Modelo.Equipo;
+import org.example.Guis.JugadoresChileGUI;
+import org.example.Guis.JugadoresAlemaniaGUI;
+import org.example.Guis.JugadoresCamerunGUI;
+import org.example.Guis.JugadoresAustraliaGUI;
+
 
 public class TeamGui extends JFrame {
 
@@ -23,13 +28,13 @@ public class TeamGui extends JFrame {
 
     public TeamGui() {
 
-        Equipo chile = new Equipo(1,"Chile","3","bandera");
-        Equipo camerun = new Equipo(2,"Camerun","1","bandera");
-        Equipo australia = new Equipo(3,"Australia","4","bandera");
-        Equipo alemania = new Equipo(4,"Alemania","2","bandera");
+        Equipo chile = new Equipo(3,"Chile","12","bandera");
+        Equipo camerun = new Equipo(2,"Camerun","32","bandera");
+        Equipo australia = new Equipo(1,"Australia","48","bandera");
+        Equipo alemania = new Equipo(4,"Alemania","7","bandera");
 
 
-        setTitle("Login");
+        setTitle("Menu Teams");
         setSize(400, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -51,7 +56,6 @@ public class TeamGui extends JFrame {
         panel.add(textoPaises);
         panel.add(Bandera);
         panel.add(botonSalir);
-        panel.add(botonJugadores);
 
         add(panel);
         setVisible(true);
@@ -61,18 +65,21 @@ public class TeamGui extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 textoMuestraRanking.setText(chile.getRanking());
-                String rutaImagen = "src\\main\\resources\\chi.png";
+                String rutaImagen = "src\\main\\resources\\imagenes\\chi.png";
                 ImageIcon imagen = new ImageIcon(rutaImagen);
                 Bandera.setIcon(imagen);
+                JugadoresChileGUI ventanaChile = new JugadoresChileGUI();
             }
         });
         alemaniaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 textoMuestraRanking.setText(alemania.getRanking());
-                String rutaImagen = "src\\main\\resources\\ger.png";
+                String rutaImagen = "src\\main\\resources\\imagenes\\ger.png";
                 ImageIcon imagen = new ImageIcon(rutaImagen);
                 Bandera.setIcon(imagen);
+                JugadoresAlemaniaGUI ventanaAlemania = new JugadoresAlemaniaGUI();
+
 
             }
         });
@@ -80,18 +87,22 @@ public class TeamGui extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 textoMuestraRanking.setText(camerun.getRanking());
-                String rutaImagen = "src\\main\\resources\\cmr.png";
+                String rutaImagen = "src\\main\\resources\\imagenes\\cmr.png";
                 ImageIcon imagen = new ImageIcon(rutaImagen);
                 Bandera.setIcon(imagen);
+                JugadoresCamerunGUI ventanaCamerun = new JugadoresCamerunGUI();
+
             }
         });
         australiaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 textoMuestraRanking.setText(australia.getRanking());
-                String rutaImagen = "src\\main\\resources\\aus.png";
+                String rutaImagen = "src\\main\\resources\\imagenes\\aus.png";
                 ImageIcon imagen = new ImageIcon(rutaImagen);
                 Bandera.setIcon(imagen);
+                JugadoresAustraliaGUI ventanaAustralia = new JugadoresAustraliaGUI();
+
             }
         });
         botonSalir.addActionListener(new ActionListener() {
